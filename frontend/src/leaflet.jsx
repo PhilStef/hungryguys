@@ -46,8 +46,8 @@ const LeafletMap = () => {
 
         useEffect(() => {
             const bounds = L.latLngBounds(
-              [24.609770666771333, -88.2925760360841],  // Southwest coordinates (latitude, longitude)
-              [31.198677095834647, -79.28790148713662]   // Northeast coordinates (latitude, longitude)
+              [24.396308, -125.0],  // Southwest coordinates (latitude, longitude)
+              [49.384358, -66.93457]   // Northeast coordinates (latitude, longitude)
             );
 
             map.setMaxZoom(10);
