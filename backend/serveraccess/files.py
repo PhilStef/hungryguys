@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 # Read the CSV file
-df = pd.read_csv('backend/csvfiles/parks_coordinates.csv')
+df = pd.read_csv(r'.\csvfiles\NEWparks_coordinates.csv')
 
 # Extract latitude and longitude columns as a list of tuples
 coords = df[['latitude', 'longitude']].values.tolist()
