@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios';
 import LeafletMap from './leaflet';
+import Inputs from './inputs';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,8 +20,11 @@ function App() {
 
   return (
     <>
-      <div class="square" className="p-4 max-w-1/2 h-full" id="map">
+      <div class="square" className="p-4 max-w-5/7 h-full" id="map">
         <LeafletMap />
+      </div>
+      <div>
+        <Inputs />
       </div>
       {/* <p>{data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}</p> */}
     </>
