@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import axios from 'axios';
 
 const LeafletMap = () => {
     // Create a position for the map center
@@ -18,6 +19,28 @@ const LeafletMap = () => {
     });
 
     // Custom component to handle map click and show popup
+    const fetchDataFromFlask = async () => {
+        try {
+            // Send a GET request to Flask to fetch data
+            const response = await axios.get('http://localhost:5000/submit');
+            // Handle the response from Flask
+            console.log('Data received from Flask:', response.data);
+            setDataFromFlask(response.data.data); // Update the state with the received data
+            setResponseMessage(response.data.message); // Update the message
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    // Use useEffect to set up polling (every 5 seconds)
+    useEffect(() => {
+        // Call the fetchData function every 5 seconds
+        const interval = setInterval(fetchDataFromFlask, 5000);
+
+        // Clean up the interval on component unmount
+        return () => clearInterval(interval);
+    }, []);
+
     const MapEventListener = () => {
         const map = useMap(); // Access the map instance
 
@@ -46,15 +69,15 @@ const LeafletMap = () => {
 
         useEffect(() => {
             const bounds = L.latLngBounds(
-              [24.396308, -125.0],  // Southwest coordinates (latitude, longitude)
-              [49.384358, -66.93457]   // Northeast coordinates (latitude, longitude)
+                [24.396308, -125.0],  // Southwest coordinates (latitude, longitude)
+                [49.384358, -66.93457]   // Northeast coordinates (latitude, longitude)
             );
 
             map.setMaxZoom(10);
-      
+
             // Apply maxBounds to the map
             map.setMaxBounds(bounds);
-          }, [map]);
+        }, [map]);
 
         return null; // This component doesn't need to render anything
     };
