@@ -1,7 +1,7 @@
 # app.py
 from flask import Flask, jsonify
 from flask_cors import CORS
-from serveraccess import inputs
+from serveraccess.inputy import Inputy
 from flask import request
 
 app = Flask(__name__)
@@ -16,6 +16,9 @@ def submit_data():
 
     # Process the data as needed (for example, just print it)
     print("Received data:", data)
+
+    input_reception = Inputy()
+    input_reception.handleinput()
 
 
     # You can perform operations with the data here, e.g., save it to a database
