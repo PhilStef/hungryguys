@@ -20,9 +20,8 @@ def submit_data():
     input_reception = Inputy()
     input_reception.handleinput()
 
-
     # You can perform operations with the data here, e.g., save it to a database
-
+    data = "[30.71893991279309, -83.76014426463944]"
     # Send a response back to the React app
     response = {"message": "Data received successfully", "data": data}
     return jsonify(response)
