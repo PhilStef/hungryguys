@@ -24,25 +24,25 @@ const LeafletMap = () => {
         map.doubleClickZoom.disable();  // Disable double-click zoom
         map.zoomControl.remove();
 
-        useEffect(() => {
-            const popup = L.popup(); // Create a new popup instance
+        // useEffect(() => {
+        //     const popup = L.popup(); // Create a new popup instance
 
-            // Function to handle map click events
-            const onMapClick = (e) => {
-                popup
-                    .setLatLng(e.latlng)
-                    .setContent("You clicked the map at " + e.latlng.toString())
-                    .openOn(map); // Open popup on the map
-            };
+        //     // Function to handle map click events
+        //     const onMapClick = (e) => {
+        //         popup
+        //             .setLatLng(e.latlng)
+        //             .setContent("You clicked the map at " + e.latlng.toString())
+        //             .openOn(map); // Open popup on the map
+        //     };
 
-            // Add event listener for click
-            map.on('click', onMapClick);
+        //     // Add event listener for click
+        //     map.on('click', onMapClick);
 
-            // Cleanup event listener when component is unmounted
-            return () => {
-                map.off('click', onMapClick);
-            };
-        }, [map]); // Dependency array ensures the effect runs only once
+        //     // Cleanup event listener when component is unmounted
+        //     return () => {
+        //         map.off('click', onMapClick);
+        //     };
+        // }, [map]); // Dependency array ensures the effect runs only once
 
         useEffect(() => {
             const bounds = L.latLngBounds(
